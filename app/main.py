@@ -1,11 +1,23 @@
-from fastapi import FastAPI
+import fastapi
+import httpx
+from scrapy.selector import Selector
+import time
+import os
 
-app = FastAPI()
+api = fastapi.FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+@api.get('/api/weather/{city}')
+async def weather(city: str):
+    url = f'https://pogoda.mail.ru/prognoz/{city}/'
 
-@app.get("/custom")
-def read_custom_message():
-    return {"message": "This is a custom message!"}
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, timeout=None)
+        response.raise_for_status()
+
+    selector = Selector(text=response.text)
+    t = selector.xpath('//div[@class="information__content__temperature"]/text()').getall()[1].strip()
+
+    print("FASTAPI PID: ", os.getpid())
+    time.sleep(6)
+
+    return {'city':city, 'temperature':t, 'source':'pogoda.mail.ru'}
