@@ -1,6 +1,9 @@
 import fastapi
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.src.database.register import register_tortoise
+from app.src.database.config import TORTOISE_ORM
+
 app = fastapi.FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -9,6 +12,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+register_tortoise(app, config=TORTOISE_ORM, generate_schemas=False)
 
 @app.get("/")
 def read_root():

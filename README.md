@@ -11,4 +11,6 @@ or
 
 - go to `frontend` folder and run:
 
+do not forget to:  `npm install` first, then:
+
 `npm run serve`

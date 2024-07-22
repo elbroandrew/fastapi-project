@@ -1,5 +1,4 @@
 gunicorn
-scrapy
 fastapi
 uvicorn
 tortoise-orm
