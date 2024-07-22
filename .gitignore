@@ -2,3 +2,5 @@ venv/
 __pycache__
 
 migrations/**/
+
+app/src/auth/app_secrets.py

@@ -1,16 +1,14 @@
 from fastapi import HTTPException
-from cryptography.fernet import Fernet
+from passlib.context import CryptContext
 from tortoise.exceptions import DoesNotExist, IntegrityError
-
 from src.database.models import Users
 from src.schemas.users import UserOutSchema
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-key = Fernet.generate_key()
-f = Fernet(key)
 
 async def create_user(user):
-    user.password = f.encrypt(user.password)
+    user.password = pwd_context.encrypt(user.password)
 
     try:
         user_obj = await Users.create(**user.dict(exclude_unset=True))
