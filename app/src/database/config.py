@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("..")
 
 TORTOISE_ORM = {
     "connections" : {"default": "postgres://andrew:123@0.0.0.0:5432/postgres"},

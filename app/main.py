@@ -1,5 +1,8 @@
 import fastapi
 from fastapi.middleware.cors import CORSMiddleware
+import sys
+
+sys.path.append("..")
 
 from app.src.database.register import register_tortoise
 from app.src.database.config import TORTOISE_ORM
