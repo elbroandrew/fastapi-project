@@ -2,3 +2,6 @@ gunicorn
 scrapy
 fastapi
 uvicorn
+tortoise-orm
+aerich
+asyncpg
