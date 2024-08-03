@@ -8,7 +8,7 @@ from src.schemas.token import Status
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-async def create_user(user):
+async def create_user(user) -> UserOutSchema:
     user.password = pwd_context.encrypt(user.password)
 
     try:

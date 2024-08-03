@@ -11,7 +11,7 @@ from tortoise.exceptions import DoesNotExist
 from src.schemas.token import TokenData
 from src.schemas.users import UserOutSchema
 from src.database.models import Users
-from app_secrets import SECRET_KEY
+from src.auth.app_secrets import SECRET_KEY
 
 
 ALGORITHM = "HS256"
