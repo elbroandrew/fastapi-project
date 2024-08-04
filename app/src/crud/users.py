@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from passlib.context import CryptContext
 from tortoise.exceptions import DoesNotExist, IntegrityError
-from src.database.models import Users
-from src.schemas.users import UserOutSchema
-from src.schemas.token import Status
+from app.src.database.models import Users
+from app.src.schemas.users import UserOutSchema
+from app.src.schemas.token import Status
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

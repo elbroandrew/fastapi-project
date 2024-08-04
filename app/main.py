@@ -9,10 +9,10 @@ from app.src.database.register import register_tortoise
 from app.src.database.config import TORTOISE_ORM
 
 # enable schemas to read relationship between models
-Tortoise.init_models(["src.database.models"], "models")
+Tortoise.init_models(["app.src.database.models"], "models")
 
 # import 'from src.routes' must be after 'Tortoise.init'
-from app.src.routes import users, notes
+from src.routes import users, notes
 
 app = fastapi.FastAPI()
 app.add_middleware(

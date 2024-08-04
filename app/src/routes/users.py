@@ -7,12 +7,12 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from tortoise.contrib.fastapi import HTTPNotFoundError
 
-import src.crud.users as crud
-from src.auth.users import validate_user
-from src.schemas.token import Status
-from src.schemas.users import UserInSchema, UserOutSchema
+import app.src.crud.users as crud
+from app.src.auth.users import validate_user
+from app.src.schemas.token import Status
+from app.src.schemas.users import UserInSchema, UserOutSchema
 
-from src.auth.jwthandler import (
+from app.src.auth.jwthandler import (
     create_access_token,
     get_current_user,
     ACCESS_TOKEN_EXPIRE_MINUTES
@@ -43,7 +43,7 @@ async def login(user: OAuth2PasswordRequestForm = Depends()):
     content = {"message": "You've successfully logged in."}
     response = JSONResponse(content=content)
     response.set_cookie(
-        "Autorization",
+        "Authorization",
         value=f"Bearer {token}",
         httponly=True,
         max_age=1800,
@@ -65,6 +65,6 @@ async def read_users_me(current_user: UserOutSchema = Depends(get_current_user))
     responses={404: {"model": HTTPNotFoundError}},
     dependencies=[Depends(get_current_user)],
 )
-async def deleteE_user(user_id: int, current_user: UserOutSchema = Depends(get_current_user)) -> Status:
+async def delete_user(user_id: int, current_user: UserOutSchema = Depends(get_current_user)) -> Status:
     return await crud.delete_user(user_id, current_user)
 

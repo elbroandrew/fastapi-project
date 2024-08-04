@@ -8,10 +8,10 @@ from fastapi.security.utils import get_authorization_scheme_param
 from jose import JWTError, jwt
 from tortoise.exceptions import DoesNotExist
 
-from src.schemas.token import TokenData
-from src.schemas.users import UserOutSchema
-from src.database.models import Users
-from src.auth.app_secrets import SECRET_KEY
+from app.src.schemas.token import TokenData
+from app.src.schemas.users import UserOutSchema
+from app.src.database.models import Users
+from app.src.auth.app_secrets import SECRET_KEY
 
 
 ALGORITHM = "HS256"
